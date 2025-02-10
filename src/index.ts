@@ -1,8 +1,8 @@
+import app from '@/app.js';
+import { PORT } from '@/config/envs.js';
 import { serve } from '@hono/node-server';
-import app from 'app.js';
-import { PORT } from 'config/envs.js';
 
-const port = +PORT;
+const port = PORT;
 
 console.log(`Server is running on http://localhost:${port}`);
 

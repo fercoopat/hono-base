@@ -1,3 +1,3 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
-export const { PORT = 3000 } = process.env
+export const PORT = Number(process.env.PORT) || 3000;

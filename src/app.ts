@@ -1,13 +1,13 @@
-import { useRoutes } from 'helpers/use-routes.js';
-import { Hono } from 'hono/tiny';
-import type { Bindings } from 'types/app.type.js';
+import { useRoutes } from '@/helpers/use-routes.js'
+import type { AppOptions } from '@/types/app.type.js'
+import { Hono } from 'hono/tiny'
 
-const app = new Hono<{ Bindings: Bindings }>();
+const app = new Hono<AppOptions>()
 
-useRoutes(app);
+useRoutes(app)
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!');
-});
+  return c.text('Hello Hono!')
+})
 
-export default app;
+export default app

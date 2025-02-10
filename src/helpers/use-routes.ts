@@ -1,5 +1,5 @@
-import type { App } from 'types/app.type.js';
+import type { App } from '@/types/app.type.js';
 
-export const useRoutes = (app: App) => {
+export const useRoutes = (app: App): void => {
   app.basePath('/api');
 };
