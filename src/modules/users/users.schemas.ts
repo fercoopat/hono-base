@@ -4,6 +4,7 @@ import {
 } from '@/config/regex.js';
 import { ROLE, ROLES_VALUES } from '@/config/roles.js';
 import { z } from 'zod';
+import { zValidator } from '@hono/zod-validator';
 
 export const UserSchema = z.object({
   username: z
@@ -23,6 +24,8 @@ export const RegisterUserSchema = UserSchema.extend({
       'At Least 8 Characters with at Least One Uppercase, One Lowercase, One Number, and One Special Character'
     ),
 });
+
+export const registerUserValidator = zValidator('json', RegisterUserSchema);
 
 export type RegisterUserPayload = z.infer<typeof RegisterUserSchema>;
 
