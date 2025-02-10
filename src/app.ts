@@ -1,13 +1,20 @@
-import { useRoutes } from '@/helpers/use-routes.js'
-import type { AppOptions } from '@/types/app.type.js'
-import { Hono } from 'hono/tiny'
+import { errorHandler } from '@/helpers/error-handler.js';
+import { notFoundHandler } from '@/helpers/not-found-handler.js';
+import usersRoutes from '@/modules/users/users.routes.js';
+import type { AppOptions } from '@/types/app.type.js';
+import { logger } from 'hono/logger';
+import { prettyJSON } from 'hono/pretty-json';
+import { Hono } from 'hono/tiny';
 
-const app = new Hono<AppOptions>()
+const app = new Hono<AppOptions>().basePath('/api');
 
-useRoutes(app)
+app.use(prettyJSON());
+app.use(logger());
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+app.route('/users', usersRoutes);
 
-export default app
+app.notFound(notFoundHandler);
+
+app.onError(errorHandler);
+
+export default app;
