@@ -9,10 +9,12 @@ import { Hono } from 'hono/tiny';
 
 const app = new Hono<AppOptions>().basePath('/api');
 
+// MIDDLEWARES
 app.use(poweredBy());
 app.use(prettyJSON());
 app.use(logger());
 
+// ROUTES
 app.route('/users', usersRoutes);
 
 app.notFound(notFoundHandler);
