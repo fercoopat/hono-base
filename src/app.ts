@@ -3,11 +3,13 @@ import { notFoundHandler } from '@/helpers/not-found-handler.js';
 import usersRoutes from '@/modules/users/users.routes.js';
 import type { AppOptions } from '@/types/app.type.js';
 import { logger } from 'hono/logger';
+import { poweredBy } from 'hono/powered-by';
 import { prettyJSON } from 'hono/pretty-json';
 import { Hono } from 'hono/tiny';
 
 const app = new Hono<AppOptions>().basePath('/api');
 
+app.use(poweredBy());
 app.use(prettyJSON());
 app.use(logger());
 
